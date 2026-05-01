@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Master Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Sanity Suite(failed)">
+    <groups>
+      <run>
+        <include name="sanity"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="b_e2e_sanity_tests.Sanity_OrderFlow_Test">
+        <methods>
+          <include name="verifyBasicOrderFlow"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- b_e2e_sanity_tests.Sanity_OrderFlow_Test -->
+    </classes>
+  </test> <!-- Sanity Suite(failed) -->
+  <test thread-count="5" name="E2E Suite(failed)">
+    <groups>
+      <run>
+        <include name="e2e"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="b_e2e_sanity_tests.E2E_OrderFlow_Test">
+        <methods>
+          <include name="setUp"/>
+          <include name="verifyUsercanPlaceOrderSuccessfully"/>
+        </methods>
+      </class> <!-- b_e2e_sanity_tests.E2E_OrderFlow_Test -->
+    </classes>
+  </test> <!-- E2E Suite(failed) -->
+</suite> <!-- Failed suite [Master Suite] -->
