@@ -1,0 +1,12 @@
+target/
+reports/
+test-output/
+
+*.log
+*.tmp
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
