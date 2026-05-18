@@ -31,7 +31,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 	
 	WebDriverWait wait;
 	WebDriver driver;
-	private String selectedProductName;   // ✅ HERE
+	private String selectedProductName;   // HERE
 	
 	By productGrid = By.xpath("//div[@class='productgrid--wrapper']");	
 	By products_ProductContainer  = By.xpath("//div[@class='productitem__container']");
@@ -126,7 +126,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			System.out.println("\nTotal Products in current Page : "+noOfProductsPerPage);
 			System.out.println("Total Products counted so far: " + noOfProductsCounted);
 			/*
-			 * 👉 Helps you see:
+			 * Helps you see:
 					How many items in current page
 					How many already counted
 			 */
@@ -134,9 +134,9 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			int totalProductsCountedTillNow = noOfProductsCounted+noOfProductsPerPage;
 			System.out.println("Total Products Counted Till Now: ---> "+totalProductsCountedTillNow);
 			
-			// ✅ Check if target product is in this page
+			//  Check if target product is in this page
 			
-			// ✅ Check if target product is in this page
+			//  Check if target product is in this page
 	        if (targetIndex >= noOfProductsCounted &&
 	        		targetIndex < noOfProductsCounted + noOfProductsPerPage) 
 	        {
@@ -155,7 +155,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 	  		  
 	            waitFor2Seconds();
 	            
-	            // ✅ CAPTURE NAME BEFORE CLICK
+	            //  CAPTURE NAME BEFORE CLICK
 	            selectedProductName  = element.getText();
 	 		  
 	         //   System.out.println("\nProduct Name Clicked: -->"+element.getText());
@@ -164,9 +164,9 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 
 	         //   element.click();
 
-	            System.out.println("✅ Product clicked at index: " + targetIndex);
+	            System.out.println(" Product clicked at index: " + targetIndex);
 	            
-	         // ✅ return next page
+	         //  return next page
 	            return new A5_ProductDetailsPage(driver);
 	            
 	        }
@@ -174,7 +174,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			
 			
 			
-	        // ❌ Not in this page → move to next
+	        //  Not in this page → move to next
 		      //  noOfProductsCounted += noOfProductsPerPage;
 		        noOfProductsCounted = noOfProductsCounted+noOfProductsPerPage;
 		        
@@ -184,11 +184,11 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 		        
 		        
 		        
-		        /*  --- DELETE THIS LATER
+		        /*   DELETE THIS LATER
 		        
 		        if (!nextBtnIsDisplay) {
 		            // Friendly message if index is out of range
-		            System.out.println("❌ Product index " + targetIndex +
+		            System.out.println("Product index " + targetIndex +
 		                " not found. Only " + noOfProductsCounted + " products available.");
 		            return;  // exit gracefully
 		            
@@ -197,7 +197,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 		            if (!nextBtnIsDisplay) {
 		            	
 		            	throw new RuntimeException(
-		    				    "❌ Product index " + targetIndex +
+		    				    "Product index " + targetIndex +
 		    				    " not found. Total products available: " + noOfProductsCounted
 		    				);
 		            	
@@ -212,14 +212,14 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			
 			/*
 			throw new RuntimeException(
-				    "❌ Product index " + targetProductIndex +
+				    "Product index " + targetProductIndex +
 				    " not found. Total products available: " + noOfProductsCounted
 				);
 			*/
 			
 			/*
 			throw new RuntimeException(
-				    "❌ Invalid Index: " + targetProductIndex +
+				    " Invalid Index: " + targetProductIndex +
 				    ". Only " + noOfProductsCounted + " products available."
 				);
 			*/	
@@ -250,7 +250,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			System.out.println("\nTotal Products in current Page : "+noOfProductsPerPage);
 			System.out.println("Total Products counted so far: " + noOfProductsCounted);
 			/*
-			 * 👉 Helps you see:
+			 *  Helps you see:
 					How many items in current page
 					How many already counted
 			 */
@@ -258,9 +258,9 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			int totalProductsCountedTillNow = noOfProductsCounted+noOfProductsPerPage;
 			System.out.println("Total Products Counted Till Now: ---> "+totalProductsCountedTillNow);
 			
-			// ✅ Check if target product is in this page
+			//  Check if target product is in this page
 			
-			// ✅ Check if target product is in this page
+			//  Check if target product is in this page
 	        if (targetIndex >= noOfProductsCounted &&
 	        		targetIndex < noOfProductsCounted + noOfProductsPerPage) 
 	        {
@@ -279,7 +279,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 	  		  
 	            waitFor2Seconds();
 	            
-	            // ✅ CAPTURE NAME BEFORE CLICK
+	            //  CAPTURE NAME BEFORE CLICK
 	            String productName = element.getText();
 	 		  
 	         //   System.out.println("\nProduct Name Clicked: -->"+element.getText());
@@ -288,14 +288,14 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 
 	         //   element.click();
 
-	            System.out.println("✅ Product clicked at index: " + targetIndex);
+	            System.out.println(" Product clicked at index: " + targetIndex);
 	            return productName;
 	        }
 
 			
 			
 			
-	        // ❌ Not in this page → move to next
+	        //  Not in this page → move to next
 		      //  noOfProductsCounted += noOfProductsPerPage;
 		        noOfProductsCounted = noOfProductsCounted+noOfProductsPerPage;
 		        
@@ -305,7 +305,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 
 		        if (!nextBtnIsDisplay) {
 		            // Friendly message if index is out of range
-		            System.out.println("❌ Product index " + targetIndex +
+		            System.out.println(" Product index " + targetIndex +
 		                " not found. Only " + noOfProductsCounted + " products available.");
 		            return null;  // exit gracefully
 		        }
@@ -315,15 +315,15 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			
 			/*
 			throw new RuntimeException(
-				    "❌ Product index " + targetProductIndex +
+				    " Product index " + targetProductIndex +
 				    " not found. Total products available: " + noOfProductsCounted
 				);
 			*/
 			
 			/*
 			throw new RuntimeException(
-				    "❌ Invalid Index: " + targetProductIndex +
-				    ". Only " + noOfProductsCounted + " products available."
+				    " Invalid Index: " + targetProductIndex +
+				    " Only " + noOfProductsCounted + " products available."
 				);
 			*/	
 		}
@@ -408,7 +408,7 @@ public class A4_SearchResultsPage_TrendyItems extends BasePage
 			  
 			  js.executeScript("arguments[0].click();", nextBtn);
 			  
-			  return true; // ✅ next page exists
+			  return true; //  next page exists
 		}
 		
 	 

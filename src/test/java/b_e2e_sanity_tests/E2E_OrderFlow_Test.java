@@ -45,7 +45,7 @@ test.info("Searching for product");
 				"Search results page title does not contain expected text");
 
 		// Step 3: Select the Product.
-		A5_ProductDetailsPage pdp = srp.clickProductByGlobalIndex_Actual(1);
+		A5_ProductDetailsPage pdp = srp.clickProductByGlobalIndex_Actual(10);
 		String productTitle = pdp.getProductTitle();
 		System.out.println("\n" + productTitle);
 

@@ -29,7 +29,7 @@ public class Sanity_OrderFlow_Test extends A1_BaseTest
 		
 		
 		// Select Product.
-		A5_ProductDetailsPage pdp = srp.clickProductByGlobalIndex_Actual(1);
+		A5_ProductDetailsPage pdp = srp.clickProductByGlobalIndex_Actual(10);
 		
 		
 		// Add To cart

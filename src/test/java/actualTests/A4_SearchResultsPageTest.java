@@ -23,14 +23,14 @@ public class A4_SearchResultsPageTest extends A1_BaseTest
 		// Step 2: Click on Search Box.
 		A4_SearchResultsPage_TrendyItems results =     home.getHeader().clickOnSearchBox().selectItem(productKeyword);
 		
-		// Step 3:    // ✅ Grid validation
+		// Step 3:    // Grid validation
 		boolean  d = results.isProductGridDisplayed();
 		Assert.assertTrue(d, "Product grid is not displayed");
 		
 		//Assert.assertTrue(results.isProductGridDisplayed(),"Product grid is not displayed");
  
 		
-	    // Step 4:  ✅ Product count validation
+	    // Step 4:   Product count validation
 		int  noOfProducts = results.getProductCount();
 		System.out.println("The No. Of Products displaying are : "+noOfProducts);
 		Assert.assertTrue(noOfProducts>0, "No products displayed in search results");
@@ -52,7 +52,7 @@ public class A4_SearchResultsPageTest extends A1_BaseTest
 		A4_SearchResultsPage_TrendyItems searchResultsPage =     home.getHeader().clickOnSearchBox().selectItem(productKeyword);
 		
 			
-		// Step 4:   // ✅ Grid validation
+		// Step 4:   //  Grid validation
 		boolean  d = searchResultsPage.isProductGridDisplayed();
 		Assert.assertTrue(d, "Product grid is not displayed");
 			
@@ -61,26 +61,26 @@ public class A4_SearchResultsPageTest extends A1_BaseTest
 		System.out.println("Search Result Page Title : "+searchResultsPageTitle);
 		
 		
-		 // Step 6:  ✅ Product count validation
+		 // Step 6:   Product count validation
 		int  noOfProducts = searchResultsPage.getProductCount();
 		System.out.println("The No. Of Products displaying in Search Result Page are : "+noOfProducts);
 		Assert.assertTrue(noOfProducts>0, "No products displayed in search results");
 		
 		
-		 // ✅ Click product → returns Product Page	
-		A5_ProductDetailsPage productDetailsPage = searchResultsPage.clickProductByGlobalIndex_Actual(105);
+		 //  Click product → returns Product Page	
+		A5_ProductDetailsPage productDetailsPage = searchResultsPage.clickProductByGlobalIndex_Actual(100);
 		
 		
-		 // ✅ Get expected (from Search Page) // We are getting from getter method.
+		 //  Get expected (from Search Page) // We are getting from getter method.
 		String expectedProduct =	searchResultsPage.getSelectedProductName();
 		System.out.println("\nThe Selected Product title in Search Page: --> "+expectedProduct);
 		
 		
-		  // ✅ Get actual (from Product Page)
+		  //  Get actual (from Product Page)
 		String actualProduct = productDetailsPage.getProductTitle();
 		System.out.println("The Selected Product title displaying in Product Details Page: --> "+actualProduct);
 		
-		  // ✅ Get URL of the selectedProduct.	
+		  //  Get URL of the selectedProduct.	
 		String urlOfTheSelectedProduct =productDetailsPage.getCurrentPageURL();
 		System.out.println("URL of the Selected Product in Product Details Page: --> "+urlOfTheSelectedProduct);
 		
@@ -88,7 +88,7 @@ public class A4_SearchResultsPageTest extends A1_BaseTest
 		String  productDescriptionPageTitle =productDetailsPage.getPageTitleFromPDP();
 		System.out.println("Product Descirption Page Title : "+productDescriptionPageTitle);
 		
-		// ✅ Changing the URL to Lower case
+		//  Changing the URL to Lower case
 		String changedTheURLToLowercase = urlOfTheSelectedProduct.toLowerCase();
 		
 		// Chaning the Keyword to Lowser case
@@ -98,7 +98,7 @@ public class A4_SearchResultsPageTest extends A1_BaseTest
 		boolean isKeywordPresentInURL  = changedTheURLToLowercase.contains(lowercaseProductKeyword);
 		
 
-		 // ✅ Validate
+		 //  Validate
 		Assert.assertEquals(actualProduct.trim(), expectedProduct.trim(),"Product title mismatch!");
 		
 		

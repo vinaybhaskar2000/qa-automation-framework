@@ -111,7 +111,7 @@ public class A5_ProductDetailsPage extends BasePage {
 	
 	
 	/**
-	 * This Method is used in : Check UI presence, 👉 Purpose: Check UI presence
+	 * This Method is used in : Check UI presence,  Purpose: Check UI presence
 	 * @return
 	 */
 	
@@ -127,7 +127,7 @@ public class A5_ProductDetailsPage extends BasePage {
 	
 	/**
 	 * 
-	 * 👉 Purpose:Get all dropdown values, Advanced validation, Data-driven testing, Useful for future scenarios
+	 *  Purpose:Get all dropdown values, Advanced validation, Data-driven testing, Useful for future scenarios
 	 * @return
 	 */
 	
@@ -149,7 +149,7 @@ public class A5_ProductDetailsPage extends BasePage {
 	
 	
 	
-	// ✅ Correct Method for Dropdown Variant
+	//  Correct Method for Dropdown Variant
 	
 	/**
 	 * Purpose: Perform user action, Core functionality, Mandatory method
@@ -167,7 +167,7 @@ public class A5_ProductDetailsPage extends BasePage {
 	
 	// Get Selected Variant
 	
-	/** 👉 Purpose:Verify what is currently selected, Validation after action, Very important in real projects
+	/**  Purpose:Verify what is currently selected, Validation after action, Very important in real projects
 	 * 
 	 * @return
 	 */

@@ -216,7 +216,7 @@ public class A8_RazorpayPage extends BasePage {
 	
 	
 	/*
-	🔥 Alternative (better locator)
+	 Alternative (better locator)
 
 	Use something stable:
 

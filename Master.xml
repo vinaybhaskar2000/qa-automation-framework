@@ -3,26 +3,9 @@
 
 <suite name="Master Suite">
 
-  <test name="Sanity Suite">
-    <groups>
-      <run>
-        <include name="sanity"/>
-      </run>
-    </groups>
-    <classes>
-      <class name="b_e2e_sanity_tests.Sanity_OrderFlow_Test"/>
-    </classes>
-  </test>
-
-  <test name="E2E Suite">
-    <groups>
-      <run>
-        <include name="e2e"/>
-      </run>
-    </groups>
-    <classes>
-      <class name="b_e2e_sanity_tests.E2E_OrderFlow_Test"/>
-    </classes>
-  </test>
+   <suite-files>
+        <suite-file path="testng_sanity.xml"/>
+        <suite-file path="testng_e2e.xml"/>
+    </suite-files>
 
 </suite>

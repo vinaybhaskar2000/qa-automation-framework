@@ -44,7 +44,7 @@ public class A1_BaseTest {
 
 		test = extent.createTest(method.getName());
 
-		System.out.println("🔥 BEFORE METHOD EXECUTED 🔥");
+		System.out.println("BEFORE METHOD EXECUTED");
 		System.out.println("====== BEFORE METHOD EXECUTED ======");
 		System.out.println("Setup is running...");
 		// System.out.println("Driver from DriverManager: " + driver);

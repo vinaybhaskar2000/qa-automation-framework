@@ -17,8 +17,9 @@ public class A3_MyAccountPage extends BasePage {
 
 	/*
 	 * we should not hard code this By userName =
-	 * By.xpath("//h2[contains(text(),'VINAY BHASKAR')]"); By email =
-	 * By.linkText("vinaybhaskar2000@yahoo.com");
+	 * By.xpath("//h2[contains(text(),'VINAY BHASKAR')]"); 
+	 * By email = By.linkText("vinaybhaskar2000@yahoo.com");
+	 * 
 	 */
 
 	By MyAccountHeaderText = By.xpath("//h1[contains(text(),'My Account')]");

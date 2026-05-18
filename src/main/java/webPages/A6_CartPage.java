@@ -593,9 +593,9 @@ public class A6_CartPage extends BasePage {
 
 		// Step 4: Compare
 		if (top.equals(middle) && middle.equals(footer)) {
-			return "All subtotals are matching ✅";
+			return "All subtotals are matching ";
 		} else {
-			return "Mismatch in subtotals ❌";
+			return "Mismatch in subtotals ";
 
 		}
 
