@@ -1,11 +1,11 @@
 package actualTests;
 
 import java.lang.reflect.Method;
-import java.time.Duration;
+//import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -51,9 +51,71 @@ public class A1_BaseTest {
 
 		ConfigReader config = new ConfigReader();
 
-		driver = DriverManager.getDriver(config.getBrowser());
+		//driver = DriverManager.getDriver(config.getBrowser());
+		
+		
+		
+		//-----------------Jenkins Reading Properties------------
+		
+		// 1. BROWSER READING.
+		
+		
+		String browser = System.getProperty("browser");
+		
+		if(browser == null || browser.isEmpty())
+		{	
+			browser = config.getBrowser();
+		}
+		
+		System.out.println("Browser from Jenkins: "+browser);
+		
+		
+		// 2. ENVIRONMENT READING.
+		
+		String env = System.getProperty("env");
+		
+		if(env == null || env.isEmpty())
+		{
+			env="qa";
+		}
+		
+		System.out.println("Environment: "+env);
+		
+		
+		
+		// 3. LAUNCH BROWSER
+		
+		driver = DriverManager.getDriver(browser);
 		driver.manage().window().maximize();
-		driver.get(config.getURL());
+		
+		
+		// 4. OPEN URL BASED ON ENVIRONMENT.
+		
+		
+		if(env.equalsIgnoreCase("qa"))
+		{
+			driver.get(config.getURL());
+			System.out.println("Opened QA");
+		}
+		
+		else if(env.equalsIgnoreCase("uat"))
+		{
+			driver.get(config.getURL());
+			System.out.println("Opened UAT");
+		}
+		
+		else if(env.equalsIgnoreCase("prod"))
+		{
+			driver.get(config.getURL());
+			System.out.println("Opened Prod");
+		}
+		
+		else
+			
+		{
+			System.out.println("Invalid ENV. Opening default QA URL");
+			driver.get(config.getURL());
+		}
 
 	}
 

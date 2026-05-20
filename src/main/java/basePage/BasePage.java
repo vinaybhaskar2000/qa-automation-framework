@@ -14,50 +14,42 @@ public class BasePage {
 
 	protected WebDriver driver;
 	protected WebDriverWait wait;
-	//protected HeaderComponent header;
+	// protected HeaderComponent header;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		//this.header = new HeaderComponent(driver); // important
+		// this.header = new HeaderComponent(driver); // important
 
 	}
 
 	// ================================
 	// BASIC ACTIONS
 	// ================================
-		
+
 	/*
-	
-	public HeaderComponent getHeader()
-	{
-		//return header;
-		return new HeaderComponent(driver);
-	}
-	
-	*/
-	
-	
+	 * 
+	 * public HeaderComponent getHeader() { //return header; return new
+	 * HeaderComponent(driver); }
+	 * 
+	 */
+
 	/**
 	 * 
 	 * @return
 	 */
 	public String getPageTitle() {
-        return driver.getTitle();
-    }
-	
-	
+		return driver.getTitle();
+	}
+
 	// defiing wait.
-	
-	public WebElement waitForVisibilityOfElement(WebElement element)
-	{
+
+	public WebElement waitForVisibilityOfElement(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		return wait.until(ExpectedConditions.visibilityOf(element));
-		
+
 	}
-	
-	
-	
+
 	/**
 	 * 
 	 * @param locator
@@ -65,7 +57,7 @@ public class BasePage {
 	protected void clickOnElement(By locator) {
 		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 	}
-	
+
 	/**
 	 * 
 	 * @param locator
@@ -76,8 +68,7 @@ public class BasePage {
 		element.clear();
 		element.sendKeys(text);
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param locator
@@ -87,9 +78,7 @@ public class BasePage {
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		return element.getText();
 	}
-	
-	
-	
+
 	/**
 	 * 
 	 * @param locator
@@ -99,25 +88,20 @@ public class BasePage {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
 	}
 
-	
 	/**
 	 * 
 	 * @param locator
 	 * @return
 	 */
-	
+
 	protected boolean isElementEnabled(By locator) {
-	    return driver.findElement(locator).isEnabled();
+		return driver.findElement(locator).isEnabled();
 	}
-	
-	
-	
-	
+
 	// ================================
 	// Utility Methods.
 	// ================================
-	
-	
+
 	/**
 	 * 
 	 * @return
@@ -125,9 +109,7 @@ public class BasePage {
 	protected @Nullable String getCurrentURL() {
 		return driver.getCurrentUrl();
 	}
-	
-	
-	
+
 	/**
 	 * 
 	 * @param locator
