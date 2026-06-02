@@ -1,71 +1,122 @@
 pipeline {
-    
+
     agent {
-            label 'windows'
-           }
-    
-    parameters{
-          
-          choice(
-              name:'BROWSER',
-              choices:['chrome','firefox'],
-              description:'Select Browser'
-                    )
-          
-          choice(
-              name:'SUITE',
-              choices:['testng_sanity.xml','testng_e2e.xml'],
-              description:'Select TestNG Suite'
-                        )
-          
-           
+
+        label 'windows'
+    }
+
+    options {
+
+        timestamps()
+        disableConcurrentBuilds()
+    }
+
+    parameters {
+
+        choice(
+            name: 'BROWSER',
+            choices: ['chrome', 'firefox'],
+            description: 'Select Browser'
+        )
+
+        choice(
+            name: 'SUITE',
+            choices: ['testng_sanity.xml', 'testng_e2e.xml'],
+            description: 'Select TestNG Suite'
+        )
+
         booleanParam(
             name: 'RUN_TESTS',
-            defaultValue:true,
-            description:'Execute Automation Tests'
-                    )
-         }
-    
-    stages{
+            defaultValue: true,
+            description: 'Execute Automation Tests'
+        )
+    }
 
-        stage('Checkout Code') {
-        
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/vinaybhaskar2000/qa-automation-framework.git'
-                     }
-        }
+    environment {
 
-        stage('Run Tests') {
-        
-          when{
-              expression{
-                  params.RUN_TESTS == true
-                        }
-          }
-          
-          
-          
+        MAVEN_OPTS = '-Xmx1024m'
+    }
+
+    stages {
+
+        stage('Clean Workspace') {
+
             steps {
 
-               bat "mvn test -Dbrowser=${params.BROWSER}  -DsuiteXmlFile=${params.SUITE}"
+                cleanWs()
 
+                echo 'Workspace Cleaned Successfully'
             }
         }
-     }
-     
-     post{
-         
-         always{
 
-            echo 'PipeLine Execution Completed'
-        
+        stage('Checkout Source Code') {
+
+            steps {
+
+                git branch: 'main',
+                url: 'https://github.com/vinaybhaskar2000/qa-automation-framework.git'
+
+                echo 'GitHub Checkout Completed'
+            }
+        }
+
+        stage('Verify Workspace Files') {
+
+            steps {
+
+                bat 'dir'
+
+                bat 'echo %WORKSPACE%'
+            }
+        }
+
+        stage('Build Project') {
+
+            steps {
+
+                bat 'mvn clean compile'
+
+                echo 'Maven Build Completed'
+            }
+        }
+
+        stage('Execute Selenium Tests') {
+
+            when {
+
+                expression {
+
+                    return params.RUN_TESTS == true
+                }
+            }
+
+            steps {
+
+                bat "mvn test -Dbrowser=${params.BROWSER} -DsuiteXmlFile=${params.SUITE}"
+
+                echo 'Test Execution Completed'
+            }
+        }
+    }
+
+    post {
+
+        always {
+
+            echo 'Pipeline Execution Completed'
+
             junit 'target/surefire-reports/*.xml'
-        
-            archiveArtifacts artifacts: 'target/surefire-reports/*.*',fingerprint:true
-        
-            archiveArtifacts artifacts:'reports/**/*.*'
-        
+
+            archiveArtifacts(
+                artifacts: 'target/surefire-reports/*.*',
+                fingerprint: true
+            )
+
+            archiveArtifacts(
+                artifacts: 'reports/**/*.*',
+                fingerprint: true
+            )
+
             publishHTML([
                 allowMissing: false,
                 alwaysLinkToLastBuild: true,
@@ -74,39 +125,44 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Extent Automation Report'
             ])
+        }
 
-            }
         success {
 
-                emailext(
-                    subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                 body: """
-                 Build Success
-                 
-                 Job Name:${env.JOB_NAME}
-                 Build Number:${env.BUILD_NUMBER}
-                 Build URL:${env.BUILD_URL}
-                 """,
-                 to:"vinaybhaskar2000@yahoo.com"
-                         )
-            echo 'Build Passed'
-                }
-         
-         failure{
-              emailext(
-                 subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                 body: """
-                 Build Failed
-                 
-                 Job Name:${env.JOB_NAME}
-                 Build Number:${env.BUILD_NUMBER}
-                 Build URL:${env.BUILD_URL}
-                 """,
-                 to:"vinaybhaskar2000@yahoo.com"
-                 )
-                 
-             echo 'Build Failed'
-         }
-     }
-    
-  }
+            emailext(
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+Build Status  : SUCCESS
+
+Job Name      : ${env.JOB_NAME}
+Build Number  : ${env.BUILD_NUMBER}
+Build URL     : ${env.BUILD_URL}
+
+Automation Execution Completed Successfully.
+""",
+                to: 'vinaybhaskar2000@yahoo.com'
+            )
+
+            echo 'Build Passed Successfully'
+        }
+
+        failure {
+
+            emailext(
+                subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+Build Status  : FAILED
+
+Job Name      : ${env.JOB_NAME}
+Build Number  : ${env.BUILD_NUMBER}
+Build URL     : ${env.BUILD_URL}
+
+Please check Jenkins Console Logs and Reports.
+""",
+                to: 'vinaybhaskar2000@yahoo.com'
+            )
+
+            echo 'Build Failed'
+        }
+    }
+}
